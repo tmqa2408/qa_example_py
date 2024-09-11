@@ -43,10 +43,9 @@ jobs:
           name: Run tests
           command: python -m pytest
 
+
 workflows:
-  tests:
+  build_and_test:
     jobs:
       - build
-      - test:
-          requires:
-            - build
+      - test
