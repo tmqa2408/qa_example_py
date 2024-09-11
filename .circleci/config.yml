@@ -33,20 +33,15 @@
 version: 2.1
 
 jobs:
-  build:
-    working_directory: ~/circleci-python
-    docker:
-      - image: "cimg/python:3.11.9"
+  build_and_test:
+    executor: python/default
     steps:
       - checkout
-      - run: pytest tests
-  test:
-    working_directory: ~/circleci-python
-    docker:
-      - image: "cimg/python:3.11.9"
-    steps:
-      - checkout
-      - run: pytest tests
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: python -m pytest
 
 workflows:
   build_and_test:
