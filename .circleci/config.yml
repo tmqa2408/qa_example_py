@@ -44,7 +44,7 @@ jobs:
           command: python -m pytest
 
 workflows:
-  build_and_test:
+  tests:
     jobs:
       - build
       - test:
