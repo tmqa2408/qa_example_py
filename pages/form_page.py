@@ -8,6 +8,8 @@ class FormPage(BasePage):
         first_name = 'Hello'
         last_name = 'World'
         email = 'hello@world.com'
+
+
  #       self.remove_footer()
         self.element_is_visible(Locators.FIRST_NAME).send_keys(first_name)
         time.sleep(1)
