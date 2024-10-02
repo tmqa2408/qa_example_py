@@ -18,4 +18,7 @@ class BasePage:
 
     def remove_footer(self):
         self.driver.execute_script("document.getElementsByTagName('amp-img')[0].remove();")
-#        self.driver.execute_script("")
+        self.driver.execute_script("")
+
+    def scroll_down(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")

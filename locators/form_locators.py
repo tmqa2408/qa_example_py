@@ -12,5 +12,4 @@ class FormPageLocators:
     HOBBIES = (By.CSS_SELECTOR, '#hobbiesWrapper > div.col-md-9.col-sm-12 > div:nth-child(2) > label')
     CURRENT_ADDRESS = (By.CSS_SELECTOR, '#currentAddress')
     SUBMIT = (By.CSS_SELECTOR, '#submit')
-
     RESULT_TABLE = (By.XPATH, '//*[@class="table-responsive"]//td[2]')
