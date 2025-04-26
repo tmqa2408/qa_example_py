@@ -1,14 +1,14 @@
-FROM python:3.9.0-alpine
+FROM python:3.11
 
-WORKDIR /app
+RUN apt-get update && \
+    apt-get install -y \
+    wget \
+    unzip \
+    chromium \
+    chromium-driver
 
-COPY . .
+RUN python3 -m pip install --upgrade pip
 
-#RUN apt-get update && apt-get install -y python3 python3-pip
-
-RUN pip install selenium==4.4.3
-
-RUN pip3 install -r requirements.txt
 
 CMD ["pytest"]
 

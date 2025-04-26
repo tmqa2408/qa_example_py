@@ -1,25 +1,26 @@
 import pytest
 from selenium import webdriver
 
-
-
-# from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-# from webdriver_manager.chrome import ChromeDriverManager
-
-
-
+from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture(scope='function')
-def driver(capabilities=None):
-    chrome_options = Options()
-    # chrome_options.add_argument('--no-sandbox')
-    # chrome_options.add_argument('--headless')
-    # chrome_options.add_argument('--disable-dev-shm-usage')
+def driver(request):
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless")  # Убери, если нужен UI
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Для минимизации вывода
 
-    driver = webdriver.Remote(command_executor='http://172.17.0.2:4444/wd/hub',options=chrome_options)
-    #    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    #    driver = webdriver.Chrome(service=driver_service)
-    #    driver.maximize_window()
+
+    # Принудительно указываем путь к chromedriver
+    chromedriver_path = ChromeDriverManager().install()
+    service = Service(chromedriver_path)
+
+    driver = webdriver.Chrome(service=service, options=options)
     yield driver
     driver.quit()
